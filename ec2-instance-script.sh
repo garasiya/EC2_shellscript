@@ -1,0 +1,1 @@
+aws ec2 run-instances --image-id ami-63342007 --security-group-ids sg-58bacc31 --count 1 --instance-type t2.micro --key-name gaurang-env-key --query 'Instances[0].InstanceId' --user-data file://my_script.txt

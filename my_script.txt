@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#Setting Up The Instance
+
+sudo apt-get update -y
+sudo apt-get install python -y
+sudo apt-get install python-pip -y
+sudo apt-get install git -y
+sudo pip install Flask
+cd
+
+git clone https://github.com/garasiya/FlaskApp.git
+
+cd
+sudo apt-get install nginx -y
+sudo apt-get install uwsgi-core uwsgi-plugin-python -y
+
+git clone https://github.com/garasiya/EC2_configuration.git
+cd /etc/nginx/
+sudo rm -rf nginx.conf
+sudo ln -s /home/ubuntu/EC2_configuration/etc/nginx/nginx.conf nginx.conf
+cd
+
+sudo service nginx restart
+uwsgi ~/FlaskApp/uwsgi.ini
